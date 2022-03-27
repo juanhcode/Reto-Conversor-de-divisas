@@ -128,7 +128,7 @@ const convertir = (cantidad, valorActual,moneda) => {
     //div.style.display = 'block';
     const p = document.createElement('p');
     p.classList.add('parrafo');
-    p.innerText = ` ${resultado.toFixed(2)} ${moneda}`;
+    p.innerText = ` ${resultado.toFixed(4)} ${moneda}`;
     p.style.fontSize = '33px'
     p.style.color = 'black';
     p.style.textAlign='center';
