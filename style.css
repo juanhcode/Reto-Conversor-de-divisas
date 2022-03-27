@@ -1,0 +1,90 @@
+body {
+    background-color: #cecece;
+}
+
+.contenedor {
+    width: 650px;
+    height: 230px;
+    background-color: #9e9e9e;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.container-image {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.img-responsive {
+    margin-top: 20px;
+}
+
+.container-input {
+    margin-top: 10px;
+    text-align: center;
+
+}
+
+.contenedor-opciones {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.button-enviar {
+    width: 150px;
+    margin-left: 30px;
+    background-color: #70ad47;
+    color: white;
+    padding: 5px;
+    border:none;
+    border-radius: 3px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+input[type=number] { -moz-appearance:textfield; }
+#money{
+    padding: 4px;
+    width: 65%;
+    border-radius: 6px;
+    border: none;
+}
+
+input::placeholder {
+    color: black;
+    text-align: center;
+}
+
+select {
+    appearance: none;
+}
+
+.button-escoger-moneda{
+    padding: 5px;
+    width: 160px;
+    text-align: center;
+    background-color:#d9d9d9;
+    border-radius:3px;
+}
+
+.new-div{
+    background-color:#feb1a4;
+    margin:auto;
+    width: 70%;
+    height: 50px;
+    text-align: center;
+    display: none;
+    border-radius:5px;
+}
+
+.parrafo{
+    color:white;
+    padding-top: 10px;
+
+}
