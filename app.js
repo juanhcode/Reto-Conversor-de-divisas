@@ -23,6 +23,7 @@ formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     const contenedor = document.querySelector('.contenedor');
     const parrafo = document.querySelector('.parrafo');
+    let selectedOption = this.options[selectOpcion.selectedIndex];
     console.log(botonDinero.value);
     if (isNaN(parseInt(botonDinero.value))) {
         limpiarHTML();
@@ -33,10 +34,23 @@ formulario.addEventListener('submit', (e) => {
         const p = document.createElement('p');
         p.classList.add('parrafo');
         p.innerText = 'Formulario invalido digite una cantidad';
+        p.style.fontSize = '20px';
         div.appendChild(p);
         //contenedor.appendChild(div);
         divPrecios.appendChild(div);
-    } else {
+    }else if(botonDinero.value != 0 && (selectedOption.text === 'Elige tu Moneda' && seleccionarMoneda() === 'Elige tu Moneda')){
+        limpiarHTML();
+        const div = document.createElement('div');
+        contenedor.style.height = '280px';
+        div.classList.add('new-div');
+        div.style.display = 'block';
+        const p = document.createElement('p');
+        p.classList.add('parrafo');
+        p.innerText = 'No se puede escoger esa opcion';
+        p.style.fontSize = '20px';
+        div.appendChild(p);
+        divPrecios.appendChild(div);
+    }else {
         let selectedOption = this.options[selectOpcion.selectedIndex];
         convertir(selectedOption, botonDinero.value, seleccionarDinero(), seleccionarMoneda());
     }
