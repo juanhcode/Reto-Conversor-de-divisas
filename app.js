@@ -1,13 +1,9 @@
-const monedas = ['Elige tu Moneda', 'Dolar', 'Peso Mexicano', 'Peso Colombiano', 'Euro', 'Libra Esterlina'];
-let botonDinero = document.getElementById('money');
-
-
 //seleccionando el primer Select
 let selectOpcion = document.querySelector('#options');
 let selectOpcion2 = document.querySelector('#option2');
 const divPrecios = document.querySelector('.precios');
-//console.log(selectOpcion2)
-
+const monedas = ['Elige tu Moneda', 'Dolar', 'Peso Mexicano', 'Peso Colombiano', 'Euro', 'Libra Esterlina'];
+let botonDinero = document.getElementById('money');
 let resultado = 0;
 
 
@@ -38,7 +34,21 @@ formulario.addEventListener('submit', (e) => {
         div.appendChild(p);
         //contenedor.appendChild(div);
         divPrecios.appendChild(div);
-    }else if(botonDinero.value != 0 && (selectedOption.text === 'Elige tu Moneda' && seleccionarMoneda() === 'Elige tu Moneda')){
+    }else if((botonDinero.value != 0 && (selectedOption.text !== 'Elige tu Moneda' && seleccionarMoneda() === 'Elige tu Moneda') || (botonDinero.value != 0 && (selectedOption.text === 'Elige tu Moneda' && seleccionarMoneda() !== 'Elige tu Moneda') 
+    ))){
+        limpiarHTML();
+        const div = document.createElement('div');
+        contenedor.style.height = '280px';
+        div.classList.add('new-div');
+        div.style.display = 'block';
+        const p = document.createElement('p');
+        p.classList.add('parrafo');
+        p.innerText = 'No se puede esta conversión';
+        p.style.fontSize = '20px';
+        div.appendChild(p);
+        divPrecios.appendChild(div);
+    }
+    else if(botonDinero.value != 0 && (selectedOption.text === 'Elige tu Moneda' && seleccionarMoneda() === 'Elige tu Moneda')){
         limpiarHTML();
         const div = document.createElement('div');
         contenedor.style.height = '280px';
@@ -87,8 +97,6 @@ selectOpcion.addEventListener('change',
         let pesosColombiano = [0, 0.00026, 0.0053, 1, 0.00024, 0.00020];
         let euros = [0, 1.10, 22.00, 4172.51, 1, 0.83];
         let libras = [0, 1.32, 26.43, 5010.46, 1.20, 1];
-
-
         let selectedOption = this.options[selectOpcion.selectedIndex];
         if (selectedOption.text === 'Dolar') {
             agregarPrecios(selectOpcion2, preciosDolar);
@@ -121,12 +129,11 @@ const convertir = (monedaActual, cantidad, valorActual, moneda) => {
     contenedor.style.height = '280px';
     const p = document.createElement('p');
     p.classList.add('parrafo');
-    p.innerText = `$${cantidad} ${monedaActual.text} ->  $${resultado} ${moneda}`;
+    p.innerText = `$${cantidad} ${monedaActual.text} - $${resultado} ${moneda}`;
     p.style.fontSize = '25px'
     p.style.color = 'black';
     p.style.textAlign = 'center';
     p.style.fontFamily = 'Helvetica';
-    //contenedor.appendChild(p);
     divPrecios.appendChild(p);
 }
 
