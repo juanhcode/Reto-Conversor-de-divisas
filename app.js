@@ -83,8 +83,9 @@ const agregarOpciones = () => {
 
 const agregarPrecios = (elemento, array) => {
     for (let i = 0; i < elemento.length; i++) {
-        let opt = elemento[i];
-        opt.value = array[i];
+        //let opt = elemento[i];
+        elemento[i].setAttribute('value',array[i]);
+        //opt.value = array[i];
     }
 }
 
