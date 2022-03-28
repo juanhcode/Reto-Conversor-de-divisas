@@ -5,6 +5,7 @@ let botonDinero = document.getElementById('money');
 //seleccionando el primer Select
 let selectOpcion = document.querySelector('#options');
 let selectOpcion2 = document.querySelector('#option2');
+const divPrecios = document.querySelector('.precios');
 //console.log(selectOpcion2)
 
 let resultado = 0;
@@ -24,8 +25,8 @@ formulario.addEventListener('submit', (e) => {
     const parrafo = document.querySelector('.parrafo');
     console.log(botonDinero.value);
     if (isNaN(parseInt(botonDinero.value))) {
+        limpiarHTML();
         const div = document.createElement('div');
-        div.remove();
         contenedor.style.height = '280px';
         div.classList.add('new-div');
         div.style.display = 'block';
@@ -33,10 +34,11 @@ formulario.addEventListener('submit', (e) => {
         p.classList.add('parrafo');
         p.innerText = 'Formulario invalido digite una cantidad';
         div.appendChild(p);
-        contenedor.appendChild(div);
+        //contenedor.appendChild(div);
+        divPrecios.appendChild(div);
     } else {
         let selectedOption = this.options[selectOpcion.selectedIndex];
-        convertir(selectedOption,botonDinero.value, seleccionarDinero(),seleccionarMoneda());
+        convertir(selectedOption, botonDinero.value, seleccionarDinero(), seleccionarMoneda());
     }
     formulario.reset();
 })
@@ -55,7 +57,7 @@ const agregarOpciones = () => {
     })
 }
 
-const agregarPrecios = (elemento,array) => {
+const agregarPrecios = (elemento, array) => {
     for (let i = 0; i < elemento.length; i++) {
         let opt = elemento[i];
         opt.value = array[i];
@@ -68,22 +70,22 @@ selectOpcion.addEventListener('change',
         //let monedas = ['default,'dolar','Peso mexicano','Peso colombiano','Euro','libra esterlina'];
         let preciosDolar = [0, 1, 20.07, 3798.54, 0.91, 0.76];
         let pesosMexicano = [0, 0.050, 1, 189.60, 0.045, 0.038];
-        let pesosColombiano = [0,0.00026,0.0053,1,0.00024,0.00020];
-        let euros = [0,1.10,22.00,4172.51,1,0.83];
-        let libras = [0,1.32,26.43,5010.46,1.20,1];
+        let pesosColombiano = [0, 0.00026, 0.0053, 1, 0.00024, 0.00020];
+        let euros = [0, 1.10, 22.00, 4172.51, 1, 0.83];
+        let libras = [0, 1.32, 26.43, 5010.46, 1.20, 1];
 
 
         let selectedOption = this.options[selectOpcion.selectedIndex];
         if (selectedOption.text === 'Dolar') {
-            agregarPrecios(selectOpcion2,preciosDolar);
+            agregarPrecios(selectOpcion2, preciosDolar);
         } else if (selectedOption.text === 'Peso Mexicano') {
-            agregarPrecios(selectOpcion2,pesosMexicano);
+            agregarPrecios(selectOpcion2, pesosMexicano);
         } else if (selectedOption.text === 'Peso Colombiano') {
-            agregarPrecios(selectOpcion2,pesosColombiano);
+            agregarPrecios(selectOpcion2, pesosColombiano);
         } else if (selectedOption.text === 'Euro') {
-            agregarPrecios(selectOpcion2,euros);
+            agregarPrecios(selectOpcion2, euros);
         } else if (selectedOption.text === 'Libra Esterlina') {
-            agregarPrecios(selectOpcion2,libras);
+            agregarPrecios(selectOpcion2, libras);
         }
     }
 );
@@ -98,7 +100,8 @@ const seleccionarMoneda = () => {
     return selectedOption2.text;
 }
 
-const convertir = (monedaActual,cantidad, valorActual,moneda) => {
+const convertir = (monedaActual, cantidad, valorActual, moneda) => {
+    limpiarHTML();
     let resultado = new Intl.NumberFormat('es-Mx').format(cantidad * valorActual);
     const contenedor = document.querySelector('.contenedor');
     contenedor.style.height = '280px';
@@ -107,7 +110,15 @@ const convertir = (monedaActual,cantidad, valorActual,moneda) => {
     p.innerText = `$${cantidad} ${monedaActual.text} ->  $${resultado} ${moneda}`;
     p.style.fontSize = '25px'
     p.style.color = 'black';
-    p.style.textAlign='center';
+    p.style.textAlign = 'center';
     p.style.fontFamily = 'Helvetica';
-    contenedor.appendChild(p);
+    //contenedor.appendChild(p);
+    divPrecios.appendChild(p);
+}
+
+function limpiarHTML(){
+    while (divPrecios.firstChild){
+        divPrecios.removeChild(divPrecios.firstChild);
+    }
+
 }
