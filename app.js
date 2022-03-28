@@ -40,7 +40,7 @@ formulario.addEventListener('submit', (e) => {
         let selectedOption = this.options[selectOpcion.selectedIndex];
         convertir(selectedOption, botonDinero.value, seleccionarDinero(), seleccionarMoneda());
     }
-    formulario.reset();
+    //formulario.reset();
 })
 
 const agregarOpciones = () => {
